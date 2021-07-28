@@ -28,19 +28,26 @@
                 <a href="#" class="brand-logo">Perfect Packaging</a>
                 <a href="#" data-target="mobile-navbar" class="right sidenav-trigger"><i class="fas fa-bars"></i></a>
                 <ul class="right hide-on-med-and-down">
-                    <li><a href="sass.html">Sass</a></li>
-                    <li><a href="badges.html">Components</a></li>
-                    <li><a href="collapsible.html">Javascript</a></li>
-                    <li><a href="mobile.html">Mobile</a></li>
+                    <li><a href="{{url_for('index')}}">Home</a></li>
+            {% if session.user %}
+            <li><a href="badges.html">Log Out</a></li>
+            {% else %}
+            <li><a href="{{url_for('login')}}">Log In</a></li>
+            {% endif %}
+            <li><a href="collapsible.html">Contact Us</a></li>
+                    
                 </ul>
             </div>
         </nav>
         <!-- Mobile side navbar-->
         <ul class="sidenav" id="mobile-navbar">
-            <li><a href="sass.html">Sass</a></li>
-            <li><a href="badges.html">Components</a></li>
-            <li><a href="collapsible.html">Javascript</a></li>
-            <li><a href="mobile.html">Mobile</a></li>
+            <li><a href="{{url_for('index')}}">Home</a></li>
+            {% if session.user %}
+            <li><a href="badges.html">Log Out</a></li>
+            {% else %}
+            <li><a href="{{url_for('login')}}">Log In</a></li>
+            {% endif %}
+            <li><a href="collapsible.html">Contact Us</a></li>
         </ul>
 
     </header>
