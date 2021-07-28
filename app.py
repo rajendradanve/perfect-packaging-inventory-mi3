@@ -16,9 +16,11 @@ app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
 
+
 @app.route("/")
-@app.route("/index")
-def index():
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    
     return render_template("index.html")
 
 
