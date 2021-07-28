@@ -50,6 +50,20 @@ def login():
 
     return render_template("login.html")
 
+
+@app.route("/admin")
+def admin(username):
+    if username == "admin":
+
+
+
+
+    else:
+        return redirect(url_for("index"))
+
+    return render_template("admin.html")
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
         port =int(os.environ.get("PORT")),
