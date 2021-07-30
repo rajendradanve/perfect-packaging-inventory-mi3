@@ -52,11 +52,8 @@ def login():
 
 @app.route("/admin")
 def admin():
-    if session["user"] == "admin":
-        flash("Admin is loged in") 
-    else:
+    if session["user"] != "admin":
         return redirect(url_for("index"))
-
     return render_template("admin.html")
 
 
@@ -66,6 +63,12 @@ def logout():
     flash("You have been logged out")
     session.pop("user")
     return redirect(url_for("login"))
+
+
+@app.route("/add_customer")
+def add_customer():
+
+    return render_template("add_customer.html")
 
 
 if __name__ == "__main__":
