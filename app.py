@@ -38,8 +38,7 @@ def login():
                 flash("Welcome, {}".format(
                     request.form.get("username")))
                 if session["user"] == "admin":
-                    return redirect(url_for(
-                        "admin", username=session["user"]))
+                    return redirect(url_for("admin"))
                 else:
                     return redirect(url_for(
                         "customer", username=session["user"]))
@@ -52,16 +51,21 @@ def login():
 
 
 @app.route("/admin")
-def admin(username):
-    if username == "admin":
-
-
-
-
+def admin():
+    if session["user"] == "admin":
+        flash("Admin is loged in") 
     else:
         return redirect(url_for("index"))
 
     return render_template("admin.html")
+
+
+@app.route("/logout")
+def logout():
+    # remove user from session cookies
+    flash("You have been logged out")
+    session.pop("user")
+    return redirect(url_for("login"))
 
 
 if __name__ == "__main__":
