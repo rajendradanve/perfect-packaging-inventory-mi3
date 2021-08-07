@@ -67,6 +67,8 @@ def logout():
 
 @app.route("/add_customer")
 def add_customer():
+    if session["user"] != "admin":
+        return redirect(url_for("login"))
 
     return render_template("add_customer.html")
 

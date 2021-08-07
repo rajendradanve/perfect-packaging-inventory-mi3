@@ -1,22 +1,49 @@
 {% extends "base.html" %}
 {% block content %}
-<h3>Enter New Customer Data Below</h3>
+
 
 <div class="row">
-    <form class="col s12">
-      <div class="row">
-        <div class="input-field col s6">
-          <i class="material-icons prefix">account_circle</i>
-          <input id="icon_prefix" type="text" class="validate">
-          <label for="icon_prefix">First Name</label>
+  <h3 class="center-align">Enter New Customer Data Below</h3>
+ <form class="col s12 m8 offset-m2" method="POST" action="">
+   <div class="card-panel">
+
+    <div class="row">
+      <div class="input-field col s12">
+          <i class="fas fa-warehouse prefix light-blue-text text-darken-4"></i>
+          <input id="customer_name"  name="business_name" type="text" class="validate" pattern="^[a-zA-Z0-9]{5,15}$" minlength="5" maxlength="50" required>
+          <label for="customer_name">Customer Name</label>
         </div>
-        <div class="input-field col s6">
-          <i class="material-icons prefix">phone</i>
-          <input id="icon_telephone" type="tel" class="validate">
-          <label for="icon_telephone">Telephone</label>
-        </div>
-      </div>
-    </form>
   </div>
+
+  <div class="row">
+    <div class="input-field col s12">
+        <i class="fas fa-map-marked-alt prefix light-blue-text text-darken-4"></i>
+        <input id="customer_address"  name="ustomer_address" type="text" class="validate" pattern="^[a-zA-Z0-9]{5,15}$" minlength="15" required>
+        <label for="customer_address">Customer Address</label>
+      </div>
+</div>
+  
+
+     <div class="row">
+         <div class="input-field col s12">
+             <i class="fas fa-at prefix light-blue-text text-darken-4"></i>
+             <input id="customer_email"  name="customer_email" type="email" class="validate" minlength="5" maxlength="15" required>
+             <label for="customer_email">Customer Email</label>
+           </div>
+     </div>
+     <div class="row">
+         <div class="input-field col s12">
+             <i class="fas fa-phone-alt prefix light-blue-text text-darken-4"></i>
+           <input id="customer_telephone" name="ustomer_telephone" type="tel" class="validate" pattern="^[0-9+ ]{5,15}$" minlength="5" maxlength="20" required>
+           <label for="customer_telephone">Customer Telephone</label>
+         </div>
+   </div>
+   <div class="row">
+       <button type="submit" class="col s12 btn-large light-blue text-darken-4 text-shadow">Add Customer <i class="fas fa-plus-square"></i></button>
+   </div>
+ 
+   </div>
+ </form>
+</div>
 
 {% endblock %}
