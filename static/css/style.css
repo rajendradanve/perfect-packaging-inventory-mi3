@@ -18,6 +18,9 @@ body {
 }
 
 .flashes h4{
-
     line-height: 2;
+}
+
+.buttons{
+  margin: 10px 0 0 10px
 }

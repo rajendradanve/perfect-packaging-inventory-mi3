@@ -69,9 +69,21 @@ def logout():
 def add_customer():
     if session["user"] != "admin":
         return redirect(url_for("login"))
+    
 
     return render_template("add_customer.html")
 
+
+@app.route("/edit_customer")
+def edit_customer():
+    
+    return render_template("edit_customer.html")
+
+
+@app.route("/delete_customer")
+def delete_customer():
+    
+    return render_template("delete_customer.html")
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
