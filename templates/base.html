@@ -31,8 +31,12 @@
                     <li><a href="{{url_for('index')}}">Home</a></li>
             {% if session.user %}
             {% if session.user == 'admin' %}
-                <li><a href="{{url_for('admin')}}">Admin</a></li>
+                <li><a href="{{url_for('admin')}}">Admin Profile</a></li>
+                {% else %}
+                <li><a href="{{url_for('admin')}}">Customer Profile</a></li>
                 {% endif %}
+
+            <li><a href="{{url_for('change_password')}}">Change Password</a></li>
             <li><a href="{{url_for('logout')}}">Log Out</a></li>
                 
             {% else %}

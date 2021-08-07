@@ -1,4 +1,6 @@
 import os
+import random
+import string
 from flask import (
     Flask, flash, render_template,  
     redirect, request, session, url_for)
@@ -65,11 +67,38 @@ def logout():
     return redirect(url_for("login"))
 
 
-@app.route("/add_customer")
+def get_password_string(length):
+    # With combination of lower and upper case
+    password_str = ''.join(random.choice(
+        string.ascii_letters) for i in range(length))
+    
+    return password_str
+
+
+@app.route("/add_customer", methods=["GET", "POST"])
 def add_customer():
     if session["user"] != "admin":
         return redirect(url_for("login"))
     
+    if request.method == "POST":
+        # check if username already exist in db
+        existing_customer = mongo.db.users.find_one(
+            {"customer_email": request.form.get("customer_email").lower()})
+
+        if existing_user:
+            flash("Customer already exist")
+            return redirect(url_for("add_customer"))
+        else:
+            password = get_password_string(random.randint(5, 10))
+            register_customer = {
+                "customer_name": request.form.get("customer_name").lower(),
+                "customer_address": request.form.get("customer_address"),
+                "customer_email": request.form.get("customer_email"),
+                "customer_contact_number": request.form.get(
+                        "customer_contact_number"),
+                "customer_password": generate_password_hash(password)
+        }
+
 
     return render_template("add_customer.html")
 
@@ -84,6 +113,12 @@ def edit_customer():
 def delete_customer():
     
     return render_template("delete_customer.html")
+
+
+@app.route("/change_password")
+def change_password():
+    
+    return render_template("change_password.html")
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
