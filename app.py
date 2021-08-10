@@ -75,44 +75,48 @@ def get_password_string(length):
     return password_str
 
 
-@app.route("/add_customer", methods=["GET", "POST"])
-def add_customer():
+@app.route("/add_business", methods=["GET", "POST"])
+def add_business():
     if session["user"] != "admin":
         return redirect(url_for("login"))
     
     if request.method == "POST":
         # check if username already exist in db
         existing_customer = mongo.db.users.find_one(
-            {"customer_email": request.form.get("customer_email").lower()})
+            {"business_email": request.form.get("business_email").lower()})
 
-        if existing_user:
-            flash("Customer already exist")
-            return redirect(url_for("add_customer"))
+        if existing_customer:
+            flash("Business already exist")
+            return redirect(url_for("add_business"))
         else:
             password = get_password_string(random.randint(5, 10))
+            print("password:" + password)
             register_customer = {
-                "customer_name": request.form.get("customer_name").lower(),
-                "customer_address": request.form.get("customer_address"),
-                "customer_email": request.form.get("customer_email"),
-                "customer_contact_number": request.form.get(
-                        "customer_contact_number"),
-                "customer_password": generate_password_hash(password)
-        }
+                "business_name": request.form.get("business_name"),
+                "business_branch":request.form.get("business_branch"),
+                "business_address": request.form.get("business_address"),
+                "business_email": request.form.get("business_email").lower(),
+                "business_contact_number": request.form.get(
+                        "business_contact_number"),
+                "business_password": generate_password_hash(password)
+            }
+            mongo.db.businesses.insert_one(register_customer)
+            flash("Business Registered Successfully")
+            return redirect(url_for("add_business"))
+
+    return render_template("add_business.html")
 
 
-    return render_template("add_customer.html")
-
-
-@app.route("/edit_customer")
-def edit_customer():
+@app.route("/edit_business")
+def edit_business():
     
-    return render_template("edit_customer.html")
+    return render_template("edit_business.html")
 
 
-@app.route("/delete_customer")
-def delete_customer():
+@app.route("/delete_business")
+def delete_business():
     
-    return render_template("delete_customer.html")
+    return render_template("delete_business.html")
 
 
 @app.route("/change_password")
@@ -124,6 +128,3 @@ if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
         port =int(os.environ.get("PORT")),
         debug =True)
-
-
-

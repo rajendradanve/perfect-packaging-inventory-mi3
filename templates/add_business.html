@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<div class="row">
+  <h3 class="center-align">Enter New Business Data Below</h3>
+  <form class="col s12 m8 offset-m2" method="POST" action="">
+    <div class="card-panel">
+
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="fas fa-warehouse prefix light-blue-text text-darken-4"></i>
+          <input id="business_name" name="business_name" type="text" class="validate" pattern="^[a-zA-Z0-9 ]{5,50}$"
+            minlength="5" maxlength="50" required>
+          <label for="business_name">Business Name</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="fas fa-code-branch prefix light-blue-text text-darken-4"></i>
+          <input id="business_branch" name="business_branch" type="text" class="validate"
+            pattern="^[a-zA-Z0-9, ]{4, 30}$" minlength="4" maxlength="30" required>
+          <label for="business_branch">Business Branch Name</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="fas fa-map-marked-alt prefix light-blue-text text-darken-4"></i>
+          <input id="business_address" name="business_address" type="text" class="validate"
+            pattern="^[a-zA-Z0-9, ]{5, 100}$" minlength="15" required>
+          <label for="business_address">Business Address</label>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="fas fa-at prefix light-blue-text text-darken-4"></i>
+          <input id="business_email" name="business_email" type="email" class="validate" minlength="5" maxlength="30"
+            required>
+          <label for="business_email">Business Email</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="fas fa-phone-alt prefix light-blue-text text-darken-4"></i>
+          <input id="business_contact_number" name="business_contact_number" type="tel" class="validate"
+            pattern="^[0-9 ]{5,15}$" minlength="5" maxlength="20" required>
+          <label for="cbusiness_contact_number">Business Contact Number</label>
+        </div>
+      </div>
+      <div class="row">
+        <button type="submit" class="col s12 btn-large light-blue text-darken-4 text-shadow"><i
+            class="fas fa-plus-square"></i> Add Business</button>
+      </div>
+
+    </div>
+  </form>
+</div>
+
+{% endblock %}
